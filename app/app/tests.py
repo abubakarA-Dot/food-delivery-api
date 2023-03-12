@@ -4,6 +4,7 @@ from . import calc
 
 class CalculateTests(SimpleTestCase):
 
+
     def test_add_numbers(self):
         """Test"""
 
