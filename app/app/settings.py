@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # my project apps
     'core',
     'user',
+    'recipe',
 
     'rest_framework',
     'rest_framework.authtoken',
