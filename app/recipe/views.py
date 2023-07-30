@@ -29,4 +29,4 @@ class RecipeViewSet(viewsets.ModelViewSet):
     
     def perform_create(self, serializer):
         """Validate serializer and create a new recipe."""
-        serializer.save(user = self.request.user)
+        serializer.save(user=self.request.user)
