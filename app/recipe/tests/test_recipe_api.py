@@ -20,9 +20,11 @@ from recipe.serializers import (
 
 RECIPE_URLS = reverse('recipe:recipe-list')
 
+
 def detail_url(recipe_id):
     """Recipe detail url"""
     return reverse('recipe:recipe-detail', args=[recipe_id])
+
 
 def create_recipe(user, **params):
     """" Create and return a sample recipe """
@@ -42,9 +44,10 @@ def create_user(**params):
     """Create and return a new user."""
     return get_user_model().objects.create_user(**params)
 
+
 class PublicRecipeTests(TestCase):
     """Test unauthenticated API requests"""
-    
+
     def setUp(self):
         self.client = APIClient()
 
@@ -57,7 +60,7 @@ class PublicRecipeTests(TestCase):
 
 class PrivateRecipeApiTests(TestCase):
     """Test authenticated API requests"""
-    
+
     def setUp(self):
         self.client = APIClient()
         self.user = create_user(email="user@example.com", password="test123")
@@ -121,12 +124,12 @@ class PrivateRecipeApiTests(TestCase):
         """Test partial update of a recipe."""
         original_link = "https://example.com/recipe.pdf"
         recipe = create_recipe(
-            user = self.user,
+            user=self.user,
             title='Sample Recipe Title',
             link=original_link,
         )
         payload = {
-            'title':'New Sample Recipe Title',
+            'title': 'New Sample Recipe Title',
         }
         url = detail_url(recipe.id)
         res = self.client.patch(url, payload)
@@ -142,17 +145,17 @@ class PrivateRecipeApiTests(TestCase):
         """Test full update of a recipe."""
         original_link = "https://example.com/new-recipe.pdf"
         recipe = create_recipe(
-            user = self.user,
+            user=self.user,
             title='Sample Recipe Title',
             link=original_link,
             description='Sample description',
         )
         payload = {
-            'title':'New Sample Recipe Title',
+            'title': 'New Sample Recipe Title',
             'link': original_link,
             'description': 'New updated description',
-            'time_minutes':10,
-            'price':Decimal('3.12'),
+            'time_minutes': 10,
+            'price': Decimal('3.12'),
         }
         url = detail_url(recipe.id)
         res = self.client.put(url, payload)
@@ -181,7 +184,7 @@ class PrivateRecipeApiTests(TestCase):
         )
         recipe = create_recipe(user=self.user)
         payload = {
-            'user':new_user.id,
+            'user': new_user.id,
         }
         url = detail_url(recipe.id)
         res = self.client.patch(url, payload)
