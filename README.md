@@ -1,2 +1,2 @@
 # food-delivery-api
-I am working on a food delivery backend APIs.
+Food delivery APIs integrated with Docker containers and unit tests.
